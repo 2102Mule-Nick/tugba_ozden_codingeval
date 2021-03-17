@@ -1,0 +1,26 @@
+2021-03-17 16:46:20 INFO  root:38 - URL : jdbc:postgresql://null:5432/chatting?
+2021-03-17 16:46:22 ERROR root:43 - Failed to connect to DB
+org.postgresql.util.PSQLException: The connection attempt failed.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:315)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:51)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:465)
+	at org.postgresql.Driver.connect(Driver.java:264)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.tugba.util.ConnectionFactoryPostgres.createConnection(ConnectionFactoryPostgres.java:41)
+	at com.tugba.util.ConnectionFactoryPostgres.getConnection(ConnectionFactoryPostgres.java:55)
+	at com.tugba.dao.PersonDaoPostgres.findPersonByLastName(PersonDaoPostgres.java:22)
+	at Driver.main(Driver.java:9)
+Caused by: java.net.UnknownHostException: null
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.postgresql.core.PGStream.createSocket(PGStream.java:231)
+	at org.postgresql.core.PGStream.<init>(PGStream.java:95)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:98)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:213)
+	... 10 more
+2021-03-17 16:48:34 INFO  root:38 - URL : jdbc:postgresql://localhost:5432/chatting?
+2021-03-17 16:51:24 INFO  root:38 - URL : jdbc:postgresql://localhost:5432/chatting?
