@@ -5,19 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.tugba.pojo.Children;
+import com.tugba.pojo.Granparents;
 import com.tugba.pojo.Person;
+import com.tugba.pojo.Siblings;
 import com.tugba.util.ConnectionFactoryPostgres;
 
-public class ChildDaoPostgres implements ChildDao{
+public class GrandparentsDaoPostgres implements GrandparentsDao{
 
 	@Override
-	public Children findChildrensByPerson(Person person) {
-		Children children= null;
+	public Granparents findGranParentsByLastName(Person person) {
+		Granparents g= null;
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
 		Connection conn = ConnectionFactoryPostgres.getConnection();
-		String sql="Select * from children where children_lastName=?";		
+		String sql="Select * from grandparents where grantparents_lastName=?";		
 		
 			try {
 				stmt = conn.prepareStatement(sql);
@@ -25,10 +26,10 @@ public class ChildDaoPostgres implements ChildDao{
 				rs=stmt.executeQuery();
 			
 				while (rs.next()) {
-					children=new Children();
-					children.setId(rs.getInt("children_id"));
-					children.setChildName(rs.getString("children_name"));
-					children.setChildLastName(rs.getString("children_lastName"));										
+					g=new Granparents();
+					g.setId(rs.getInt("granparents_id"));
+					g.setGrandName(rs.getString("grantparents_name"));
+					g.setGrandLastName(rs.getString("grantparents_lastName"));										
 				}		
 				
 		} catch (SQLException e) {
@@ -36,7 +37,8 @@ public class ChildDaoPostgres implements ChildDao{
 			//log.error("Failure to connect to DB", e);
 		} 
 			
-		return children;
+		return g;
 	}
+	
 
 }

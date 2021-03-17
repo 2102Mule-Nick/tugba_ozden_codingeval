@@ -7,17 +7,18 @@ import java.sql.SQLException;
 
 import com.tugba.pojo.Children;
 import com.tugba.pojo.Person;
+import com.tugba.pojo.Siblings;
 import com.tugba.util.ConnectionFactoryPostgres;
 
-public class ChildDaoPostgres implements ChildDao{
+public class SiblingsDaoPostgres implements SiblingsDao{
 
 	@Override
-	public Children findChildrensByPerson(Person person) {
-		Children children= null;
+	public Siblings findSiblingsByPerson(Person person) {
+		Siblings siblings= null;
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
 		Connection conn = ConnectionFactoryPostgres.getConnection();
-		String sql="Select * from children where children_lastName=?";		
+		String sql="Select * from siblings where sibling_lastName=?";		
 		
 			try {
 				stmt = conn.prepareStatement(sql);
@@ -25,10 +26,10 @@ public class ChildDaoPostgres implements ChildDao{
 				rs=stmt.executeQuery();
 			
 				while (rs.next()) {
-					children=new Children();
-					children.setId(rs.getInt("children_id"));
-					children.setChildName(rs.getString("children_name"));
-					children.setChildLastName(rs.getString("children_lastName"));										
+					siblings=new Siblings();
+					siblings.setId(rs.getInt("siblings_id"));
+					siblings.setSiblingName(rs.getString("sibling_name"));
+					siblings.setSiblingLastName(rs.getString("sibling_lastName"));										
 				}		
 				
 		} catch (SQLException e) {
@@ -36,7 +37,8 @@ public class ChildDaoPostgres implements ChildDao{
 			//log.error("Failure to connect to DB", e);
 		} 
 			
-		return children;
+		return siblings;
 	}
+	
 
 }

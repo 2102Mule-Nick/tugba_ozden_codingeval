@@ -8,6 +8,9 @@ public class Driver {
 		
 		
 		System.out.println(personDaoPostgres.findPersonByLastName("Bob"));
+		
+		personDaoPostgres.printPersonWithFamilyTree("Bob");
+		
 	}
 
 }

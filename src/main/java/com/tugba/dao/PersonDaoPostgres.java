@@ -61,8 +61,19 @@ public class PersonDaoPostgres implements PersonDao{
 		/*String sql = "select * from person inner join parents on (person.id =parents.id) \r\n" + 
 		"						inner join children on(person.id =children.id) \r\n" + 
 		"						inner join siblings s on(person.id=s.id)\r\n" + 
-		"					 inner join children c on(person.id=c.id)\r\n" + 
+		"					 inner join children c on(person.id=c.id)\r\n" +
 		"					 inner join parents p on (person.id=p.id); " ;*/
+		Person person=new Person(1,"person",lastName);
+		PersonDaoPostgres personDao=new PersonDaoPostgres();
+		ChildDaoPostgres  child=new ChildDaoPostgres();
+		SiblingsDaoPostgres siblings=new SiblingsDaoPostgres();
+		GrandparentsDaoPostgres g=new GrandparentsDaoPostgres();
+		
+		System.out.println("family tree");
+		System.out.println(personDao.findPersonByLastName(lastName));
+		System.out.println(child.findChildrensByPerson(personDao.findPersonByLastName(lastName)));
+		System.out.println(siblings.findSiblingsByPerson(personDao.findPersonByLastName(lastName)));
+		System.out.println(g.findGranParentsByLastName(personDao.findPersonByLastName(lastName)));
 		
 		
 	}
